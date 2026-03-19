@@ -794,6 +794,7 @@
       state.reminderTime = inputEl("reminderTime").value || "11:00";
       localStorage.setItem(STORAGE.reminderTime, state.reminderTime);
       localStorage.setItem(STORAGE.reminderEnabled, "true");
+      const notificationSupported = "Notification" in window;
       if ("Notification" in window && Notification.permission === "default") {
         try {
           await Notification.requestPermission();
@@ -801,12 +802,13 @@
           console.error("Notification permission failed", error);
         }
       }
-      $("reminderStatus").textContent = Notification.permission === "granted" ? t("reminderSaved")(state.reminderTime) : t("reminderBlocked");
+      $("reminderStatus").textContent = notificationSupported && Notification.permission === "granted" ? t("reminderSaved")(state.reminderTime) : t("reminderBlocked");
       queueCloudSave();
     }
     async function maybeShowReminder() {
       if (localStorage.getItem(STORAGE.reminderEnabled) !== "true") return;
       if (!("Notification" in window) || Notification.permission !== "granted") return;
+      if (!("serviceWorker" in navigator)) return;
       const reminderTime = localStorage.getItem(STORAGE.reminderTime) || "11:00";
       const [hours, minutes] = reminderTime.split(":").map((part) => Number(part));
       const now = /* @__PURE__ */ new Date();
