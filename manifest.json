@@ -1,0 +1,17 @@
+{
+  "name": "Ganit Sathi",
+  "short_name": "Ganit",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0f1420",
+  "theme_color": "#0f1420",
+  "description": "Premium Hindi-first calculator and converter studio with currency, unit, and age tools.",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
