@@ -957,14 +957,27 @@
     });
   }
 
+  function openDrawer(): void {
+    $("drawer").classList.add("open");
+    $("drawer").setAttribute("aria-hidden", "false");
+  }
+
+  function closeDrawer(): void {
+    $("drawer").classList.remove("open");
+    $("drawer").setAttribute("aria-hidden", "true");
+  }
+
   function bindEvents(): void {
-    $("openDrawerBtn").addEventListener("click", () => {
-      $("drawer").classList.add("open");
-      $("drawer").setAttribute("aria-hidden", "false");
+    $("openDrawerBtn").addEventListener("click", openDrawer);
+    $("closeDrawerBtn").addEventListener("click", closeDrawer);
+    $("drawer").addEventListener("click", (event) => {
+      if (event.target === $("drawer")) closeDrawer();
     });
-    $("closeDrawerBtn").addEventListener("click", () => {
-      $("drawer").classList.remove("open");
-      $("drawer").setAttribute("aria-hidden", "true");
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeDrawer();
+    });
+    document.querySelectorAll<HTMLAnchorElement>("#drawer a").forEach((link) => {
+      link.addEventListener("click", closeDrawer);
     });
     $("themeBtn").addEventListener("click", toggleTheme);
     $("langHiBtn").addEventListener("click", () => setLanguage("hi"));

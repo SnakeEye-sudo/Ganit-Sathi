@@ -472,3 +472,126 @@ h1, h2, h3 {
   .swap-btn { height: 46px; }
   .detail-grid { grid-template-columns: 1fr; }
 }
+
+/* Sathi mobile drawer hotfix */
+.drawer {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawer-card {
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 720px) {
+  .drawer {
+    align-items: flex-start;
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .drawer-card {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* Ganit calculator-first UI pass */
+.panel-main {
+  background:
+    radial-gradient(circle at top, rgba(92, 242, 214, 0.12), transparent 42%),
+    linear-gradient(180deg, rgba(6, 12, 22, 0.96), rgba(11, 18, 30, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tabbar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+}
+
+.calculator-shell {
+  padding: 18px;
+  background:
+    linear-gradient(180deg, rgba(3, 8, 16, 0.98), rgba(12, 18, 28, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 30px 70px rgba(0, 0, 0, 0.34);
+}
+
+.display-shell {
+  border-radius: 24px;
+  padding: 22px 20px;
+  background:
+    linear-gradient(180deg, rgba(233, 247, 255, 0.96), rgba(188, 214, 229, 0.92));
+  color: #09141e;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -16px 30px rgba(92, 127, 152, 0.12);
+}
+
+.display-shell .display-label,
+.display-shell .display-result {
+  color: rgba(9, 20, 30, 0.72);
+}
+
+.display-expression {
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  min-height: 3.8rem;
+}
+
+.pad-btn {
+  min-height: 68px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 24px rgba(0, 0, 0, 0.14);
+}
+
+.pad-btn.operator {
+  color: var(--accent);
+  border-color: rgba(92, 242, 214, 0.24);
+  background:
+    linear-gradient(180deg, rgba(92, 242, 214, 0.16), rgba(92, 242, 214, 0.08));
+}
+
+.pad-btn.equal {
+  box-shadow:
+    0 16px 30px rgba(255, 179, 107, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+@media (max-width: 980px) {
+  .hero-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .tabbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pad-btn {
+    min-height: 64px;
+    font-size: 1.02rem;
+  }
+
+  .display-expression {
+    font-size: 2.25rem;
+  }
+}
