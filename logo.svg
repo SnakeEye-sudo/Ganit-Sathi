@@ -1,0 +1,24 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="ganitBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14213d"/>
+      <stop offset="100%" stop-color="#08101f"/>
+    </linearGradient>
+    <linearGradient id="ganitGlow" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#7ee7ff"/>
+      <stop offset="100%" stop-color="#ffd166"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#ganitBg)"/>
+  <circle cx="256" cy="150" r="68" fill="#13294b" stroke="url(#ganitGlow)" stroke-width="16"/>
+  <path d="M224 150h64M256 118v64" fill="none" stroke="#f8fbff" stroke-width="18" stroke-linecap="round"/>
+  <rect x="104" y="214" width="304" height="194" rx="52" fill="#122746" stroke="url(#ganitGlow)" stroke-width="16"/>
+  <g fill="#f4b942">
+    <rect x="138" y="248" width="54" height="40" rx="14"/>
+    <rect x="229" y="248" width="54" height="40" rx="14"/>
+    <rect x="320" y="248" width="54" height="40" rx="14"/>
+    <rect x="138" y="308" width="54" height="40" rx="14"/>
+    <rect x="229" y="308" width="54" height="40" rx="14"/>
+    <rect x="320" y="308" width="54" height="40" rx="14"/>
+  </g>
+</svg>

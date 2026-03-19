@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f1420">
+  <meta name="description" content="Ganit Sathi ek premium calculator app hai jisme normal, scientific, currency, unit, aur age calculator ek hi mobile-first PWA me milte hain.">
+  <title>Ganit Sathi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="night">
+  <div class="ambient-layer">
+    <div class="ambient-orb orb-a"></div>
+    <div class="ambient-orb orb-b"></div>
+    <div class="ambient-grid"></div>
+    <div class="ambient-noise"></div>
+  </div>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-card">
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow" data-i18n="menuLabel">Quick Controls</p>
+          <h2 data-i18n="menuTitle">Ganit menu</h2>
+        </div>
+        <button class="icon-btn" id="closeDrawerBtn" type="button" aria-label="Close menu">×</button>
+      </div>
+
+      <div class="drawer-grid">
+        <section class="menu-panel">
+          <p class="eyebrow" data-i18n="languageLabel">Language</p>
+          <h3 data-i18n="languageTitle">Hindi aur English</h3>
+          <div class="toggle-row" role="group" aria-label="Language">
+            <button class="mini-toggle" id="langHiBtn" type="button">हिन्दी</button>
+            <button class="mini-toggle" id="langEnBtn" type="button">English</button>
+          </div>
+        </section>
+
+        <section class="menu-panel">
+          <p class="eyebrow" data-i18n="themeLabel">Theme</p>
+          <h3 data-i18n="themeTitle">Alive studio mode</h3>
+          <button class="menu-btn" id="themeBtn" type="button" data-i18n="themeAction">Theme badlo</button>
+        </section>
+
+        <section class="menu-panel">
+          <p class="eyebrow" data-i18n="installLabel">Install</p>
+          <h3 data-i18n="installTitle">App ko phone par rakho</h3>
+          <button class="menu-btn" id="installBtn" type="button" data-i18n="installAction">Install app</button>
+        </section>
+
+        <section class="menu-panel">
+          <p class="eyebrow" data-i18n="authLabel">Family login</p>
+          <h3 data-i18n="authTitle">Ek login, poori family</h3>
+          <p class="muted small-copy" id="authStateText" data-i18n="authLoading">Login status load ho raha hai...</p>
+          <button class="menu-btn" id="authBtn" type="button" data-i18n="authSignIn">Login with Google</button>
+        </section>
+
+        <section class="menu-panel">
+          <p class="eyebrow" data-i18n="reminderLabel">Reminder</p>
+          <h3 data-i18n="reminderTitle">Daily utility nudge</h3>
+          <label class="field-label" for="reminderTime" data-i18n="reminderField">Preferred reminder time</label>
+          <input id="reminderTime" class="text-input" type="time" value="11:00">
+          <button class="menu-btn" id="saveReminderBtn" type="button" data-i18n="reminderSave">Reminder save karo</button>
+          <p class="muted small-copy" id="reminderStatus"></p>
+        </section>
+
+        <section class="menu-panel menu-panel-wide">
+          <p class="eyebrow" data-i18n="pagesLabel">Pages</p>
+          <h3 data-i18n="pagesTitle">Family links aur info</h3>
+          <div class="menu-links">
+            <a href="about.html" data-i18n="pageAbout">About</a>
+            <a href="resources.html" data-i18n="pageResources">Resources</a>
+            <a href="contact.html" data-i18n="pageContact">Contact</a>
+            <a href="privacy-policy.html" data-i18n="pagePrivacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="pageTerms">Terms &amp; Conditions</a>
+            <a href="https://snakeeye-sudo.github.io/Aapka-Sathi/" data-i18n="pageFamily">Aapka-Sathi Family</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </aside>
+
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand-wrap">
+          <img src="logo.png" alt="Ganit Sathi logo" class="brand-logo">
+          <div>
+            <p class="hero-tag" data-i18n="brandTag">Precision utility desk</p>
+            <h1>Ganit Sathi</h1>
+          </div>
+        </div>
+        <button class="hamburger-btn" id="openDrawerBtn" type="button" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <a class="family-chip" href="https://snakeeye-sudo.github.io/Aapka-Sathi/" data-i18n="familyChip">Aapka-Sathi family ka hissa</a>
+          <h2 class="hero-headline" data-i18n="heroHeadline">Normal, scientific, currency, units, aur age tools ek premium studio me.</h2>
+          <p class="hero-text" data-i18n="heroText">Fast calculation, real exchange-rate sync, useful converters, aur cloud-saved preferences ek hi jagah milte hain.</p>
+          <div class="hero-badges" id="heroBadges"></div>
+        </section>
+
+        <section class="hero-side">
+          <div class="metric-card">
+            <p class="eyebrow" data-i18n="rateCardLabel">Currency pulse</p>
+            <h3 id="rateHeadline">USD → INR</h3>
+            <strong id="rateValue">--</strong>
+            <p class="muted" id="rateMeta">--</p>
+          </div>
+          <div class="metric-card">
+            <p class="eyebrow" data-i18n="cloudCardLabel">Cloud save</p>
+            <h3 id="cloudHeadline">Family sync ready</h3>
+            <p class="muted" id="cloudMeta" data-i18n="cloudMetaIdle">Login karte hi settings aur history sync ho jayegi.</p>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <main class="app-grid">
+      <section class="panel panel-main">
+        <div class="tabbar" id="modeTabs" role="tablist" aria-label="Calculator modes"></div>
+
+        <section class="tool-view active" id="view-normal">
+          <div class="calculator-shell">
+            <div class="display-shell">
+              <p class="display-label" data-i18n="normalLabel">Normal calculator</p>
+              <div class="display-expression" id="normalExpression">0</div>
+              <div class="display-result" id="normalResult">0</div>
+            </div>
+            <div class="pad-grid" id="normalPad"></div>
+          </div>
+        </section>
+
+        <section class="tool-view" id="view-scientific">
+          <div class="calculator-shell">
+            <div class="display-shell">
+              <div class="display-topline">
+                <p class="display-label" data-i18n="scientificLabel">Scientific calculator</p>
+                <button class="ghost-chip" id="angleModeBtn" type="button">DEG</button>
+              </div>
+              <div class="display-expression" id="scientificExpression">0</div>
+              <div class="display-result" id="scientificResult">0</div>
+            </div>
+            <div class="pad-grid scientific-pad" id="scientificPad"></div>
+          </div>
+        </section>
+
+        <section class="tool-view" id="view-currency">
+          <div class="utility-grid">
+            <article class="utility-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow" data-i18n="currencyLabel">Currency converter</p>
+                  <h3 data-i18n="currencyTitle">Daily synced market reference</h3>
+                </div>
+                <button class="ghost-chip" id="currencyRefreshBtn" type="button" data-i18n="refreshRates">Refresh rates</button>
+              </div>
+              <label class="field-label" for="currencyAmount" data-i18n="amountLabel">Amount</label>
+              <input id="currencyAmount" class="text-input" type="number" inputmode="decimal" value="1" min="0" step="0.01">
+              <div class="pair-grid">
+                <div>
+                  <label class="field-label" for="currencyFrom" data-i18n="fromLabel">From</label>
+                  <select id="currencyFrom" class="text-input"></select>
+                </div>
+                <button class="swap-btn" id="swapCurrencyBtn" type="button" aria-label="Swap currencies">↔</button>
+                <div>
+                  <label class="field-label" for="currencyTo" data-i18n="toLabel">To</label>
+                  <select id="currencyTo" class="text-input"></select>
+                </div>
+              </div>
+              <div class="result-panel">
+                <p class="result-caption" data-i18n="convertedValue">Converted value</p>
+                <strong id="currencyResult">--</strong>
+                <p class="muted" id="currencyMeta">--</p>
+              </div>
+            </article>
+            <article class="utility-card secondary-card">
+              <p class="eyebrow" data-i18n="syncRuleLabel">Daily sync rule</p>
+              <h3 data-i18n="syncRuleTitle">11 baje ke baad smart refresh</h3>
+              <p class="muted" data-i18n="syncRuleText">App 11:00 AM ke baad khulte hi latest available official reference rate ko refresh karta hai aur local cache save kar deta hai.</p>
+              <a class="inline-link" href="https://frankfurter.dev/docs/" target="_blank" rel="noreferrer" data-i18n="rateSourceLink">Rate source docs</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="tool-view" id="view-units">
+          <div class="utility-grid">
+            <article class="utility-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow" data-i18n="unitLabel">Unit converter</p>
+                  <h3 data-i18n="unitTitle">Length se data tak sab</h3>
+                </div>
+              </div>
+              <label class="field-label" for="unitCategory" data-i18n="categoryLabel">Category</label>
+              <select id="unitCategory" class="text-input"></select>
+              <label class="field-label" for="unitAmount" data-i18n="amountLabel">Amount</label>
+              <input id="unitAmount" class="text-input" type="number" inputmode="decimal" value="1" step="0.01">
+              <div class="pair-grid">
+                <div>
+                  <label class="field-label" for="unitFrom" data-i18n="fromLabel">From</label>
+                  <select id="unitFrom" class="text-input"></select>
+                </div>
+                <button class="swap-btn" id="swapUnitBtn" type="button" aria-label="Swap units">↔</button>
+                <div>
+                  <label class="field-label" for="unitTo" data-i18n="toLabel">To</label>
+                  <select id="unitTo" class="text-input"></select>
+                </div>
+              </div>
+              <div class="result-panel">
+                <p class="result-caption" data-i18n="convertedValue">Converted value</p>
+                <strong id="unitResult">--</strong>
+                <p class="muted" id="unitMeta">--</p>
+              </div>
+            </article>
+            <article class="utility-card compact-card">
+              <p class="eyebrow" data-i18n="unitCoverageLabel">Coverage</p>
+              <div class="chip-cloud" id="unitCoverageChips"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="tool-view" id="view-age">
+          <div class="utility-grid">
+            <article class="utility-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow" data-i18n="ageLabel">Age calculator</p>
+                  <h3 data-i18n="ageTitle">Years, months, days, next birthday</h3>
+                </div>
+              </div>
+              <label class="field-label" for="dobInput" data-i18n="dobLabel">Date of birth</label>
+              <input id="dobInput" class="text-input" type="date">
+              <label class="field-label" for="ageCompareInput" data-i18n="compareDateLabel">Calculate till date</label>
+              <input id="ageCompareInput" class="text-input" type="date">
+              <button class="menu-btn age-btn" id="ageCalcBtn" type="button" data-i18n="calculateAge">Calculate age</button>
+              <div class="result-panel age-result">
+                <p class="result-caption" data-i18n="ageSummaryLabel">Age summary</p>
+                <strong id="ageResult">--</strong>
+                <div class="detail-grid" id="ageStats"></div>
+              </div>
+            </article>
+            <article class="utility-card compact-card">
+              <p class="eyebrow" data-i18n="lifeClockLabel">Life clock</p>
+              <div class="life-ring">
+                <div class="life-ring-core">
+                  <span id="lifeDays">--</span>
+                  <small data-i18n="daysAlive">days alive</small>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <aside class="panel panel-side">
+        <section class="side-section">
+          <div class="section-head tight">
+            <div>
+              <p class="eyebrow" data-i18n="historyLabel">Recent history</p>
+              <h3 data-i18n="historyTitle">Quick pick</h3>
+            </div>
+            <button class="ghost-chip" id="clearHistoryBtn" type="button" data-i18n="clearHistory">Clear</button>
+          </div>
+          <div class="history-list" id="historyList"></div>
+        </section>
+
+        <section class="side-section">
+          <div class="section-head tight">
+            <div>
+              <p class="eyebrow" data-i18n="focusLabel">Utility stack</p>
+              <h3 data-i18n="focusTitle">Built for mobile pace</h3>
+            </div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-row"><span data-i18n="stackNormal">Normal + Scientific</span><strong>2</strong></div>
+            <div class="stack-row"><span data-i18n="stackConverters">Converters</span><strong id="converterCount">--</strong></div>
+            <div class="stack-row"><span data-i18n="stackCloud">Cloud sync</span><strong data-i18n="stackCloudValue">Ready</strong></div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Ganit Sathi logo">
+        <div>
+          <strong>Ganit Sathi</strong>
+          <p data-i18n="footerNote">Precision tools ko beautiful aur pocket-friendly banane ke liye.</p>
+        </div>
+      </div>
+      <p class="footer-credit">Crafted and developed by <strong>Er. Sangam Krishna</strong>.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script defer src="notification-prompt.js"></script>
+  <script defer src="sathi-navigator.js"></script>
+</body>
+</html>
+
+
