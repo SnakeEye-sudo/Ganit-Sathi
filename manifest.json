@@ -8,10 +8,11 @@
   "description": "Premium Hindi-first calculator and converter studio with currency, unit, and age tools.",
   "icons": [
     {
-      "src": "logo.svg",
+      "src": "logo.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
 }
+
